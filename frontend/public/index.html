@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tourism Multi-Agent Planner</title>
+</head>
+<body>
+
+<h2>Tourism Multi-Agent Planner</h2>
+
+<input id="userInput" type="text" placeholder="Enter a place..." style="width: 400px;">
+<button onclick="sendQuery()">Submit</button>
+
+<h3>Response:</h3>
+<div id="output" style="white-space: pre-line; font-size: 18px;"></div>
+
+<script>
+async function sendQuery() {
+    const text = document.getElementById("userInput").value;
+
+    const response = await fetch("http://127.0.0.1:5000/tourism", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ place: text })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("output").innerText = data.answer || "No response";
+}
+</script>
+
+</body>
+</html>
