@@ -17,7 +17,7 @@ function App() {
     setResponse("");
 
     try {
-      const res = await fetch("http://127.0.0.1:5000/tourism", {
+        const res = await fetch("https://multi-agent-tourism-system-b00b.onrender.com/tourism", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ place: place.trim() }),
