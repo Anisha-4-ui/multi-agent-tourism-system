@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
-
+import os
 app = Flask(__name__)
 CORS(app)
 
@@ -233,5 +233,6 @@ def home():
     return jsonify({"message": "Tourism Multi-Agent System is running!"})
 
 if __name__ == "__main__":
-    print("Starting Tourism Multi-Agent System...")
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Starting Tourism Multi-Agent System on port {port}...")
+    app.run(host='0.0.0.0', port=port)
